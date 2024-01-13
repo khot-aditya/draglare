@@ -1,0 +1,9 @@
+import type { {{pascalCase name}}IconProps } from './types'
+import Icon from "../../../assets/icons/{{snakeCase name}}_icon.svg?react"
+import { cn } from '../../../styles/utility'
+
+export const {{pascalCase name}}Icon = (props: {{pascalCase name}}IconProps) => {
+  return (
+      <Icon {...props} className={cn('cursor-pointer', props.className)}/>
+  )
+}

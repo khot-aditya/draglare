@@ -1,0 +1,12 @@
+import { Meta, StoryFn } from '@storybook/react'
+
+import { {{pascalCase name}}Icon } from '.'
+
+export default {
+  title: 'Icons/{{pascalCase name}}Icon',
+  component: {{pascalCase name}}Icon,
+} as Meta
+
+const Template: StoryFn<typeof {{pascalCase name}}Icon> = (args) => <{{pascalCase name}}Icon {...args} />
+
+export const Default = Template.bind({})

@@ -1,0 +1,14 @@
+import type { {{pascalCase name}}Props } from './types'
+import { errorBoundaryConfig } from '../../../utils/components/ErrorBoundary'
+import { withErrorBoundary } from 'react-error-boundary'
+import { use{{{pascalCase name}}}Controller } from './controller'
+
+export const {{pascalCase name}} = withErrorBoundary(({ prop }: {{pascalCase name}}Props) => {
+  
+  const controller = use{{{pascalCase name}}}Controller();
+  console.log(controller)
+  
+  return (
+    <div>{prop}</div>
+  )
+}, errorBoundaryConfig)

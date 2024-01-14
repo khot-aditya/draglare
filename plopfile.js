@@ -1,5 +1,5 @@
 export default function (plop) {
-  plop.setGenerator("component", {
+  plop.setGenerator("System Component", {
     description: "Create a new component",
     prompts: [
       {
@@ -17,33 +17,77 @@ export default function (plop) {
     actions: [
       {
         type: "add",
-        path: "src/views/components/{{properCase name}}/index.ts",
-        templateFile: "plop/components/index.ts.hbs",
+        path: "src/views/components/system/{{properCase name}}/index.ts",
+        templateFile: "plop/components/system/index.ts.hbs",
       },
       {
         type: "add",
-        path: "src/views/components/{{properCase name}}/{{properCase name}}.tsx",
-        templateFile: "plop/components/component.tsx.hbs",
+        path: "src/views/components/system/{{properCase name}}/{{properCase name}}.tsx",
+        templateFile: "plop/components/system/component.tsx.hbs",
       },
       {
         type: "add",
-        path: "src/views/components/{{properCase name}}/{{properCase name}}.stories.tsx",
-        templateFile: "plop/components/stories.tsx.hbs",
+        path: "src/views/components/system/{{properCase name}}/{{properCase name}}.stories.tsx",
+        templateFile: "plop/components/system/stories.tsx.hbs",
       },
       {
         type: "add",
-        path: "src/views/components/{{properCase name}}/controller.ts",
-        templateFile: "plop/components/controller.ts.hbs",
+        path: "src/views/components/system/{{properCase name}}/controller.ts",
+        templateFile: "plop/components/system/controller.ts.hbs",
       },
       {
         type: "add",
-        path: "src/views/components/{{properCase name}}/types.ts",
-        templateFile: "plop/components/types.ts.hbs",
+        path: "src/views/components/system/{{properCase name}}/types.ts",
+        templateFile: "plop/components/system/types.ts.hbs",
       },
     ],
   });
 
-  plop.setGenerator("icon", {
+  plop.setGenerator("Draggable Component", {
+    description: "Create a new component",
+    prompts: [
+      {
+        type: "input",
+        name: "name",
+        message: "Name of the component?",
+        validate: (value) => {
+          if (/.+/.test(value)) {
+            return true;
+          }
+          return "The name is required";
+        },
+      },
+    ],
+    actions: [
+      {
+        type: "add",
+        path: "src/views/components/draggable/{{properCase name}}/index.ts",
+        templateFile: "plop/components/draggable/index.ts.hbs",
+      },
+      {
+        type: "add",
+        path: "src/views/components/draggable/{{properCase name}}/{{properCase name}}.tsx",
+        templateFile: "plop/components/draggable/component.tsx.hbs",
+      },
+      {
+        type: "add",
+        path: "src/views/components/draggable/{{properCase name}}/{{properCase name}}.stories.tsx",
+        templateFile: "plop/components/draggable/stories.tsx.hbs",
+      },
+      {
+        type: "add",
+        path: "src/views/components/draggable/{{properCase name}}/controller.ts",
+        templateFile: "plop/components/draggable/controller.ts.hbs",
+      },
+      {
+        type: "add",
+        path: "src/views/components/draggable/{{properCase name}}/types.ts",
+        templateFile: "plop/components/draggable/types.ts.hbs",
+      },
+    ],
+  });
+
+  plop.setGenerator("Add Icon", {
     description: "Create empty svg file",
     prompts: [
       {
@@ -87,7 +131,7 @@ export default function (plop) {
     ],
   });
 
-  plop.setGenerator("page", {
+  plop.setGenerator("Create Page", {
     description: "Create a new page",
     prompts: [
       {
@@ -125,33 +169,4 @@ export default function (plop) {
       },
     ],
   });
-
-  // plop.setGenerator("layout", {
-  //   description: "Create empty svg file",
-  //   prompts: [
-  //     {
-  //       type: "input",
-  //       name: "name",
-  //       message: "Enter layout name",
-  //       validate: (value) => {
-  //         if (/.+/.test(value)) {
-  //           return true;
-  //         }
-  //         return "The name is required";
-  //       },
-  //     },
-  //   ],
-  //   actions: [
-  //     {
-  //       type: "add",
-  //       path: "src/views/layout/{{properCase name}}/{{properCase name}}.tsx",
-  //       templateFile: "plop/layout/outlet.tsx.hbs",
-  //     },
-  //     {
-  //       type: "add",
-  //       path: "src/views/layout/{{properCase name}}/types.ts",
-  //       templateFile: "plop/layout/types.ts.hbs",
-  //     },
-  //   ],
-  // });
 }

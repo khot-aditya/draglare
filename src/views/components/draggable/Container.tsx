@@ -1,10 +1,11 @@
 import update from 'immutability-helper'
 import type { CSSProperties, FC, PropsWithChildren } from 'react'
-import { useCallback, useState } from 'react'
+import { useCallback, useContext } from 'react'
 import { useDrop } from 'react-dnd'
 
 import type { DragItem } from './interfaces'
 import { ItemTypes } from './ItemTypes'
+import { DragAndDropContext } from '../../../context/dnd-context/ContextProvider'
 
 const styles: CSSProperties = {
   width: "100%",
@@ -12,15 +13,8 @@ const styles: CSSProperties = {
   position: 'relative',
 }
 
-interface BoxMap {
-  [key: string]: { top: number; left: number; title: string }
-}
-
-export const Container: FC<PropsWithChildren> = ({children}) => {
-  const [boxes, setBoxes] = useState<BoxMap>({
-    a: { top: 20, left: 80, title: 'Drag me around' },
-    b: { top: 180, left: 20, title: 'Drag me too' },
-  })
+export const Container: FC<PropsWithChildren> = ({ children }) => {
+  const { boxes, setBoxes } = useContext(DragAndDropContext);
 
   const moveBox = useCallback(
     (id: string, left: number, top: number) => {

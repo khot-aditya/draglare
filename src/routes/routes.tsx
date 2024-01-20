@@ -1,7 +1,7 @@
 import { RouteObject, useRoutes } from 'react-router-dom';
 import { ROUTES } from './constants';
 import { Root } from '../views/pages/Root';
-import { Index } from '../views/pages/Index';
+import { Main } from '../views/pages/Main';
 
 const routes: RouteObject[] = [
   {
@@ -10,7 +10,7 @@ const routes: RouteObject[] = [
     children: [
       {
         path: ROUTES.root,
-        element: <Index />
+        element: <Main />
       }
     ]
   }

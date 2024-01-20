@@ -13,7 +13,7 @@ export const DragDropWrapper = withErrorBoundary(({ children }: DragDropWrapperP
   return (
     <DndProvider
       options={{
-        enableMouseEvents: true
+        enableMouseEvents: true,
       }}
       backend={TouchBackend}>
       {children}

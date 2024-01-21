@@ -3,7 +3,6 @@ import type { XYCoord } from 'react-dnd'
 import { useDragLayer } from 'react-dnd'
 
 import { BoxDragPreview } from './BoxDragPreview'
-import { ItemTypes } from './ItemTypes'
 
 const layerStyles: CSSProperties = {
   position: 'fixed',
@@ -27,7 +26,7 @@ function getItemStyles(
   }
 
   const { x, y } = currentOffset
-  
+
   const transform = `translate(${x}px, ${y}px)`
   return {
     transform,
@@ -48,7 +47,7 @@ export const CustomDragLayer: FC = () => {
 
   function renderItem() {
     switch (itemType) {
-      case ItemTypes.BOX:
+      case "BOX":
         return <BoxDragPreview title={item.title} />
       default:
         return null
@@ -58,6 +57,7 @@ export const CustomDragLayer: FC = () => {
   if (!isDragging) {
     return null
   }
+
   return (
     <div style={layerStyles}>
       <div

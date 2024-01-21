@@ -1,1 +1,0 @@
-export { ItemCarousel } from './ItemCarousel'

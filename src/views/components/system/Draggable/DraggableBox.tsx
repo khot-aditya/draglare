@@ -1,16 +1,13 @@
 import type { CSSProperties, FC } from 'react'
-import { memo, useContext, useEffect } from 'react'
+import { memo, useEffect } from 'react'
 import type { DragSourceMonitor } from 'react-dnd'
 import { useDrag } from 'react-dnd'
 import { getEmptyImage } from 'react-dnd-html5-backend'
 
 import { Box } from './Box'
-import { ItemTypes } from './ItemTypes'
-import { DragAndDropContext } from '../../../context/dnd-context/ContextProvider'
-
 function getStyles(
-  left: number,
-  top: number,
+  left: number | undefined,
+  top: number | undefined,
   isDragging: boolean,
 ): CSSProperties {
   const transform = `translate3d(${left}px, ${top}px, 0)`
@@ -26,24 +23,23 @@ function getStyles(
 }
 
 export interface DraggableBoxProps {
-  id: string
+  id?: string
   title: string
-  isDragging: (isDragging: boolean) => void
+  left?: number
+  top?: number
+  isDragging?: (isDragging: boolean) => void
 }
 
 export const DraggableBox: FC<DraggableBoxProps> = memo(function DraggableBox(
   props,
 ) {
 
-  const { boxes } = useContext(DragAndDropContext);
 
-  const { id, title } = props
-  const left = boxes[id].left;
-  const top = boxes[id].top;
+  const { id, title, left, top } = props
 
   const [{ isDragging }, drag, preview] = useDrag(
     () => ({
-      type: ItemTypes.BOX,
+      type: "BOX",
       item: { id, left, top, title },
       collect: (monitor: DragSourceMonitor) => ({
         isDragging: monitor.isDragging(),
@@ -58,7 +54,8 @@ export const DraggableBox: FC<DraggableBoxProps> = memo(function DraggableBox(
   }, [])
 
   useEffect(() => {
-    props.isDragging(isDragging)
+    if (props.isDragging)
+      props.isDragging(isDragging)
   }, [isDragging])
   return (
     <div
